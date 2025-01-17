@@ -3,13 +3,14 @@
 # Variables
 $resourceGroupName = "FabricUpskillingRG"
 $location = "Canada Central"
-$sku = "F4" # Define the SKU
+$sku = "F4"
 
 # Create a resource group
 New-AzResourceGroup -Name $resourceGroupName -Location $location
 
 # Array of Fabric Capacity names and Admin Members
 $fabricCapacities = @(
+    @{ CapacityName = "adminfabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" },
     @{ CapacityName = "student01fabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" },
     @{ CapacityName = "student02fabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" },
     @{ CapacityName = "student03fabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" },

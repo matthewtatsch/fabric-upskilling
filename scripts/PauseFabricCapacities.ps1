@@ -4,6 +4,7 @@ $resourceGroupName = "FabricUpskillingRG"
 
 # Define an array of Fabric Capacity names
 $fabricCapacities = @(
+    "adminfabcc",
     "student01fabcc",
     "student02fabcc",
     "student03fabcc",
