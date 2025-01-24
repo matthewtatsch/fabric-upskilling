@@ -18,7 +18,8 @@ $fabricCapacities = @(
     "student11fabcc",
     "student12fabcc",
     "student13fabcc",
-    "student14fabcc"
+    "student14fabcc",
+    "student15fabcc"
 )
 
 # Loop through each capacity and call the Suspend-AzFabricCapacity command to pause the capacity

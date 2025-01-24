@@ -19,7 +19,8 @@ $workspaceDetails = @(
     @{ WorkspaceName = "Student11"; CapacityName = "student11fabcc"; ContributorID = "Student11@MngEnvMCAP316940.onmicrosoft.com" },
     @{ WorkspaceName = "Student12"; CapacityName = "student12fabcc"; ContributorID = "Student12@MngEnvMCAP316940.onmicrosoft.com" },
     @{ WorkspaceName = "Student13"; CapacityName = "student13fabcc"; ContributorID = "Student13@MngEnvMCAP316940.onmicrosoft.com" },
-    @{ WorkspaceName = "Student14"; CapacityName = "student14fabcc"; ContributorID = "Student14@MngEnvMCAP316940.onmicrosoft.com" }
+    @{ WorkspaceName = "Student14"; CapacityName = "student14fabcc"; ContributorID = "Student14@MngEnvMCAP316940.onmicrosoft.com" },
+    @{ WorkspaceName = "Student15"; CapacityName = "student15fabcc"; ContributorID = "Student15@MngEnvMCAP316940.onmicrosoft.com" }
 )
 
 # Get the list of capacities

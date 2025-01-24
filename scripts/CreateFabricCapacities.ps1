@@ -24,7 +24,8 @@ $fabricCapacities = @(
     @{ CapacityName = "student11fabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" },
     @{ CapacityName = "student12fabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" },
     @{ CapacityName = "student13fabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" },
-    @{ CapacityName = "student14fabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" }
+    @{ CapacityName = "student14fabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" },
+    @{ CapacityName = "student15fabcc"; AdminMember = "admin@MngEnvMCAP316940.onmicrosoft.com" }
 )
 
 # Loop through each capacity and create a Microsoft Fabric capacity

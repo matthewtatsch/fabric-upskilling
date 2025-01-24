@@ -2,7 +2,7 @@
 
 $resourceGroupName = "FabricUpskillingRG"
 
-$sku = "F8" # Set the SKU to scale up or down to
+$sku = "F4" # Set the SKU to scale up or down to
 
 # Define an array of Fabric Capacity names
 $fabricCapacities = @(
@@ -20,7 +20,8 @@ $fabricCapacities = @(
     "student11fabcc",
     "student12fabcc",
     "student13fabcc",
-    "student14fabcc"
+    "student14fabcc",
+    "student15fabcc"
 )
 
 # Loop through each capacity and call the Update-AzFabricCapacity command to scale the capacity
