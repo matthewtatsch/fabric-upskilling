@@ -2,9 +2,9 @@
 
 $resourceGroupName = "FabricUpskillingRG"
 
-$sku = "F4" # Set the SKU to scale up or down to
+$sku = "F2" # Set the SKU to scale up or down to
 
-# Define an array of Fabric Capacity names
+# Define an array of Fabric Capacity names to scale
 $fabricCapacities = @(
     "adminfabcc",
     "student01fabcc",
