@@ -1,5 +1,4 @@
-# Import the required module
-Import-Module MicrosoftPowerBIMgmt
+#Requires -Module MicrosoftPowerBIMgmt
 
 # Authenticate to Power BI
 Login-PowerBI

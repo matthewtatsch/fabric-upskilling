@@ -1,5 +1,4 @@
-# Import the Azure PowerShell module
-# Import-Module Az
+#Requires -Module Az
 
 $location = "Canada Central"
 
