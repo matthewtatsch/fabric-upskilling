@@ -3,9 +3,8 @@
 Connect-MgGraph -Scopes "User.ReadWrite.All"
 
 # Function to generate a random password
-function Generate-RandomPassword {
+function New-RandomPassword {
     $length = 12
-    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"
     -join ((65..90) + (97..122) + (48..57) + (33..47) | Get-Random -Count $length | ForEach-Object { [char]$_ })
 }
 
@@ -17,7 +16,7 @@ $users = Import-Csv -Path $csvPath
 
 foreach ($user in $users) {
     # Generate the random password
-    $randomPassword = Generate-RandomPassword
+    $randomPassword = New-RandomPassword
 
     # Define the user parameters
     $UserParams = @{
