@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2023-01-01",
+            "name": "storage6yi4qxsniuioi",
+            "id": "/subscriptions/d4adf4c7-0073-4286-b750-2f2a00c9d9a3/resourceGroups/fabric-adls-rg/providers/Microsoft.Storage/storageAccounts/storage6yi4qxsniuioi",
+            "location": "westeurope",
+            "kind": "StorageV2",
+            "properties": {
+                "networkAcls": {
+                    "resourceAccessRules": [
+                        {
+                            "tenantId": "5b682058-571d-4784-97ba-42dd0f104902",
+                            "resourceId": "/subscriptions/d4adf4c7-0073-4286-b750-2f2a00c9d9a3/resourcegroups/Fabric/providers/Microsoft.Fabric/workspaces/c8757d59-767a-4002-905d-b5e209a63a8a"
+                        }]
+                }
+            }
+        }
+    ]
+}

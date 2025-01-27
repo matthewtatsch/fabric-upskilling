@@ -1,0 +1,298 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "privateEndpointName": {
+            "type": "string"
+        },
+        "privateLinkResource": {
+            "type": "string"
+        },
+        "targetSubResource": {
+            "type": "array"
+        },
+        "requestMessage": {
+            "type": "string"
+        },
+        "subnet": {
+            "type": "string"
+        },
+        "virtualNetworkId": {
+            "type": "string"
+        },
+        "virtualNetworkResourceGroup": {
+            "type": "string"
+        },
+        "subnetDeploymentName": {
+            "type": "string"
+        },
+        "privateDnsDeploymentName": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "location": "[parameters('location')]",
+            "name": "[parameters('privateEndpointName')]",
+            "type": "Microsoft.Network/privateEndpoints",
+            "apiVersion": "2021-05-01",
+            "properties": {
+                "subnet": {
+                    "id": "[parameters('subnet')]"
+                },
+                "customNetworkInterfaceName": "FabricPE-nic",
+                "privateLinkServiceConnections": [
+                    {
+                        "name": "[parameters('privateEndpointName')]",
+                        "properties": {
+                            "privateLinkServiceId": "[parameters('privateLinkResource')]",
+                            "groupIds": "[parameters('targetSubResource')]"
+                        }
+                    }
+                ]
+            },
+            "tags": {},
+            "dependsOn": []
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "[parameters('privateDnsDeploymentName')]",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "[parameters('privateEndpointName')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": [
+                        {
+                            "apiVersion": "2017-05-10",
+                            "name": "PrivateDnsZone-d54e2c30-0212-47b1-8756-4fcee7b2d077",
+                            "type": "Microsoft.Resources/deployments",
+                            "subscriptionId": "d4adf4c7-0073-4286-b750-2f2a00c9d9a3",
+                            "resourceGroup": "svcmhackrg",
+                            "properties": {
+                                "mode": "Incremental",
+                                "template": {
+                                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                                    "contentVersion": "1.0.0.0",
+                                    "resources": [
+                                        {
+                                            "type": "Microsoft.Network/privateDnsZones",
+                                            "apiVersion": "2018-09-01",
+                                            "name": "privatelink.analysis.windows.net",
+                                            "location": "global",
+                                            "tags": {},
+                                            "properties": {}
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "apiVersion": "2017-05-10",
+                            "name": "PrivateDnsZone-d54e2c30-0212-47b1-8756-4fcee7b2d078",
+                            "type": "Microsoft.Resources/deployments",
+                            "subscriptionId": "d4adf4c7-0073-4286-b750-2f2a00c9d9a3",
+                            "resourceGroup": "svcmhackrg",
+                            "properties": {
+                                "mode": "Incremental",
+                                "template": {
+                                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                                    "contentVersion": "1.0.0.0",
+                                    "resources": [
+                                        {
+                                            "type": "Microsoft.Network/privateDnsZones",
+                                            "apiVersion": "2018-09-01",
+                                            "name": "privatelink.pbidedicated.windows.net",
+                                            "location": "global",
+                                            "tags": {},
+                                            "properties": {}
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "apiVersion": "2017-05-10",
+                            "name": "PrivateDnsZone-d54e2c30-0212-47b1-8756-4fcee7b2d079",
+                            "type": "Microsoft.Resources/deployments",
+                            "subscriptionId": "d4adf4c7-0073-4286-b750-2f2a00c9d9a3",
+                            "resourceGroup": "svcmhackrg",
+                            "properties": {
+                                "mode": "Incremental",
+                                "template": {
+                                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                                    "contentVersion": "1.0.0.0",
+                                    "resources": [
+                                        {
+                                            "type": "Microsoft.Network/privateDnsZones",
+                                            "apiVersion": "2018-09-01",
+                                            "name": "privatelink.prod.powerquery.microsoft.com",
+                                            "location": "global",
+                                            "tags": {},
+                                            "properties": {}
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "VirtualNetworkLink-20240917091923",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "[parameters('privateDnsDeploymentName')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": [
+                        {
+                            "apiVersion": "2017-05-10",
+                            "name": "VirtualNetworklink-d54e2c30-0212-47b1-8756-4fcee7b2d07a",
+                            "type": "Microsoft.Resources/deployments",
+                            "subscriptionId": "d4adf4c7-0073-4286-b750-2f2a00c9d9a3",
+                            "resourceGroup": "svcmhackrg",
+                            "properties": {
+                                "mode": "Incremental",
+                                "template": {
+                                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                                    "contentVersion": "1.0.0.0",
+                                    "resources": [
+                                        {
+                                            "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+                                            "apiVersion": "2018-09-01",
+                                            "name": "[concat('privatelink.analysis.windows.net', '/', uniqueString(parameters('virtualNetworkId')))]",
+                                            "location": "global",
+                                            "properties": {
+                                                "virtualNetwork": {
+                                                    "id": "[parameters('virtualNetworkId')]"
+                                                },
+                                                "registrationEnabled": false
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "apiVersion": "2017-05-10",
+                            "name": "VirtualNetworklink-d54e2c30-0212-47b1-8756-4fcee7b2d07b",
+                            "type": "Microsoft.Resources/deployments",
+                            "subscriptionId": "d4adf4c7-0073-4286-b750-2f2a00c9d9a3",
+                            "resourceGroup": "svcmhackrg",
+                            "properties": {
+                                "mode": "Incremental",
+                                "template": {
+                                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                                    "contentVersion": "1.0.0.0",
+                                    "resources": [
+                                        {
+                                            "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+                                            "apiVersion": "2018-09-01",
+                                            "name": "[concat('privatelink.pbidedicated.windows.net', '/', uniqueString(parameters('virtualNetworkId')))]",
+                                            "location": "global",
+                                            "properties": {
+                                                "virtualNetwork": {
+                                                    "id": "[parameters('virtualNetworkId')]"
+                                                },
+                                                "registrationEnabled": false
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "apiVersion": "2017-05-10",
+                            "name": "VirtualNetworklink-d54e2c30-0212-47b1-8756-4fcee7b2d07c",
+                            "type": "Microsoft.Resources/deployments",
+                            "subscriptionId": "d4adf4c7-0073-4286-b750-2f2a00c9d9a3",
+                            "resourceGroup": "svcmhackrg",
+                            "properties": {
+                                "mode": "Incremental",
+                                "template": {
+                                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                                    "contentVersion": "1.0.0.0",
+                                    "resources": [
+                                        {
+                                            "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+                                            "apiVersion": "2018-09-01",
+                                            "name": "[concat('privatelink.prod.powerquery.microsoft.com', '/', uniqueString(parameters('virtualNetworkId')))]",
+                                            "location": "global",
+                                            "properties": {
+                                                "virtualNetwork": {
+                                                    "id": "[parameters('virtualNetworkId')]"
+                                                },
+                                                "registrationEnabled": false
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "DnsZoneGroup-20240917091923",
+            "type": "Microsoft.Resources/deployments",
+            "resourceGroup": "fabric-pl-rg",
+            "dependsOn": [
+                "[parameters('privateEndpointName')]",
+                "[parameters('privateDnsDeploymentName')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": [
+                        {
+                            "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+                            "apiVersion": "2021-05-01",
+                            "name": "[concat(parameters('privateEndpointName'), '/', 'default')]",
+                            "location": "[parameters('location')]",
+                            "properties": {
+                                "privateDnsZoneConfigs": [
+                                    {
+                                        "name": "privatelink-analysis-windows-net",
+                                        "properties": {
+                                            "privateDnsZoneId": "/subscriptions/d4adf4c7-0073-4286-b750-2f2a00c9d9a3/resourceGroups/svcmhackrg/providers/Microsoft.Network/privateDnsZones/privatelink.analysis.windows.net"
+                                        }
+                                    },
+                                    {
+                                        "name": "privatelink-pbidedicated-windows-net",
+                                        "properties": {
+                                            "privateDnsZoneId": "/subscriptions/d4adf4c7-0073-4286-b750-2f2a00c9d9a3/resourceGroups/svcmhackrg/providers/Microsoft.Network/privateDnsZones/privatelink.pbidedicated.windows.net"
+                                        }
+                                    },
+                                    {
+                                        "name": "privatelink-prod-powerquery-microsoft-com",
+                                        "properties": {
+                                            "privateDnsZoneId": "/subscriptions/d4adf4c7-0073-4286-b750-2f2a00c9d9a3/resourceGroups/svcmhackrg/providers/Microsoft.Network/privateDnsZones/privatelink.prod.powerquery.microsoft.com"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

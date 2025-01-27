@@ -1,0 +1,38 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        },
+        "privateEndpointName": {
+            "value": "FabricPE"
+        },
+        "privateLinkResource": {
+            "value": "/subscriptions/<REPLACE YOUR SUBSCRIPTION ID>/resourceGroups/fabric-pl-rg/providers/Microsoft.PowerBI/privateLinkServicesForPowerBI/fabric-pl-rg"
+        },
+        "targetSubResource": {
+            "value": [
+                "tenant"
+            ]
+        },
+        "requestMessage": {
+            "value": ""
+        },
+        "subnet": {
+            "value": "/subscriptions/<REPLACE YOUR SUBSCRIPTION ID>/resourceGroups/fabric-sql-rg/providers/Microsoft.Network/virtualNetworks/FabricVNET/subnets/PESubnet"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/<REPLACE YOUR SUBSCRIPTION ID>/resourceGroups/fabric-sql-rg/providers/Microsoft.Network/virtualNetworks/FabricVNET"
+        },
+        "subnetDeploymentName": {
+            "value": "UpdateSubnetDeployment-20240917091923"
+        },
+        "virtualNetworkResourceGroup": {
+            "value": "svcmhackrg"
+        },
+        "privateDnsDeploymentName": {
+            "value": "PrivateDns-20240917091923"
+        }
+    }
+}
